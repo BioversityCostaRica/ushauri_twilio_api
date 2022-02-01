@@ -13,7 +13,6 @@ from .views import (
 
 class TwilioAPI(plugins.SingletonPlugin):
     plugins.implements(plugins.IRoutes)
-    plugins.implements(plugins.IConfig)
 
     def before_mapping(self, config):
         # We don't add any routes before the host application
@@ -35,9 +34,4 @@ class TwilioAPI(plugins.SingletonPlugin):
                 None,
             ),
         ]
-
         return custom_map
-
-    def update_config(self, config):
-        # We add here the templates of the plugin to the config
-        u.addTemplatesDirectory(config, "templates")

@@ -1,7 +1,0 @@
-{% extend_me %}
-
-{% block links_extra %}
-    <li {% if activeMenu == 'myCustomMenu' %}class="active" {% endif %}>
-        <a href="{{ request.route_url('plugin_myprivateview',userid=activeUser.login) }}"><i class="far fa-thumbs-up"></i> <span class="nav-label">{{ _('My private page') }}</span></a>
-    </li>
-{% endblock links_extra %}
