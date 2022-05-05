@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 from urllib.request import urlretrieve
 
 from pyramid.response import Response, FileResponse
-from twilio.rest import Client
 from twilio.twiml.voice_response import VoiceResponse
 
 from ushauri.processes import (
@@ -31,21 +30,6 @@ def twiml(resp):
     headers = [("Content-Type", "text/xml; charset=utf-8")]
     resp = Response(body=str(resp), headerlist=headers)
     return resp
-
-
-def send_reply(request, number, audio_id, question_id):
-    account_sid = request.registry.settings["twilio.account.sid"]
-    auth_token = request.registry.settings["twilio.auth.token"]
-    client = Client(account_sid, auth_token)
-    client.calls.create(
-        to=number,
-        from_=request.registry.settings["twilio.number"],
-        url=request.route_url("sendreply", audioid=audio_id),
-        method="GET",
-        status_callback=request.route_url(
-            "replystatus", questionid=question_id, audioid=audio_id
-        ),
-    )
 
 
 def ivr_send_view(request):

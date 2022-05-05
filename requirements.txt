@@ -1,3 +1,1 @@
-twilio==6.57.0
-arrow==1.1.0
-pyramid==2.0
+twilio==7.9.0
